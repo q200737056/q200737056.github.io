@@ -8,12 +8,13 @@ $(function () {
       $(".layout_post").animate({}, function () {
         {
           setTimeout(function () {
-            $('#page-header').addClass('open-sidebar')
+            //$('#page-header').addClass('open-sidebar')
             $("#toggle-sidebar").addClass('on')
             $('body').animate({
               paddingLeft: 300
             }, 200)
-
+		  
+			
             $('#sidebar').animate({
               left: 0
             }, 200)
@@ -45,10 +46,11 @@ $(function () {
       var isOpen = $(this).hasClass('on')
       isOpen ? $(this).removeClass('on') : $(this).addClass('on')
       if (isOpen) {
-        $('#page-header').removeClass('open-sidebar')
+       // $('#page-header').removeClass('open-sidebar')
         $('body').animate({
           paddingLeft: 0
         }, 200)
+		$("#page-header .menus").css("padding-right","0");
 
         $('#sidebar').animate({
           left: -300
@@ -62,11 +64,15 @@ $(function () {
         })
 
       } else {
-        $('#page-header').addClass('open-sidebar')
+       // $('#page-header').addClass('open-sidebar')
         $('body').animate({
           paddingLeft: 300
         }, 200)
 
+	    if($("#page-header").hasClass('fixed')){
+		    $("#page-header .menus").css("padding-right","300px")
+		 }
+		
         $('#sidebar').animate({
           left: 0
         }, 200)
@@ -399,6 +405,10 @@ $(function () {
 
       } else {
         $('#page-header').hasClass('visible') ? console.log() : $('#page-header').addClass('visible')
+		if($('body').css("padding-left")=="300px"){
+			$('#page-header .menus').css("padding-right")=="300px"? console.log() : $('#page-header .menus').css("padding-right","300px")
+		}
+	    
       }
       $('#page-header').addClass('fixed')
 
@@ -413,6 +423,7 @@ $(function () {
     } else {
       if (currentTop === 0) {
         $('#page-header').removeClass('fixed').removeClass('visible')
+		$('#page-header .menus').css("padding-right","0")
       }
 
       $('#rightside').animate({}, function () {
@@ -554,6 +565,11 @@ $(function () {
       $('body').toggleClass('read-mode');
       $('#to_comment').toggleClass('is_invisible');
     }
+	if($('body').css("padding-left")=="300px"){
+		$("#page-header .menus").css("padding-right","300px");
+	}else{
+		$("#page-header .menus").css("padding-right","0");
+	}
   });
 
   /**
